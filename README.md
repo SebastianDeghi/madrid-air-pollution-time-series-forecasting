@@ -1,5 +1,3 @@
-Análisis de series temporales de contaminantes atmosféricos en Seúl
-
 # 🌍 Forecasting en series temporales de contaminantes atmosféricos en Madrid (2001-2018)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
