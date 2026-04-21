@@ -1,11 +1,10 @@
 Análisis de series temporales de contaminantes atmosféricos en Seúl
 
-# 🌍 Análisis de series temporales de contaminantes atmosféricos en Seúl
+# 🌍 Forecasting de series temporales de contaminantes atmosféricos en Madrid
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange)](https://jupyter.org/)
-[![Geopandas](https://img.shields.io/badge/geopandas-mapping-green)](https://geopandas.org/)
 ![Visitas](https://komarev.com/ghpvc/?username=SebastianDeghi&repo=seoul-air-pollution-time-series-analysis&color=blue&style=flat)
 
 ### 👥 Colaboradores: **David Abba, Eduardo Andreozzi, Pablo Astoreca y Eduardo Castro Luna.**
