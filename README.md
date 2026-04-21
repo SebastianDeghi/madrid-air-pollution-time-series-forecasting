@@ -1,11 +1,12 @@
 Análisis de series temporales de contaminantes atmosféricos en Seúl
 
-# 🌍 Forecasting de series temporales de contaminantes atmosféricos en Madrid
+# 🌍 Forecasting en series temporales de contaminantes atmosféricos en Madrid (2001-2018)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange)](https://jupyter.org/)
-![Visitas](https://komarev.com/ghpvc/?username=SebastianDeghi&repo=seoul-air-pollution-time-series-analysis&color=blue&style=flat)
+[![Time Series](https://img.shields.io/badge/time--series-analysis-blue)](https://en.wikipedia.org/wiki/Time_series)
+[![ARIMA](https://img.shields.io/badge/ARIMA-forecasting-red)](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
 ### 👥 Colaboradores: **David Abba, Eduardo Andreozzi, Pablo Astoreca y Eduardo Castro Luna.**
 
@@ -32,14 +33,22 @@ madrid-air-pollution-time-series-forecasting/
 
 ***
 
-## 📊 Descripción del Dataset
+## 📊 Dataset
 
-- **Fuente:** Datos horarios de calidad del aire de Madrid (2001-2018)
-- **Contaminantes:** NO₂ (Dióxido de Nitrógeno) y CO (Monóxido de Carbono)
-- **Estructura:** Archivos CSV anuales (`madrid_2001.csv` a `madrid_2018.csv`)
-- **Procesamiento:** Agregación diaria (promedio entre estaciones)
+**Fuente:** [Air Quality in Madrid (2001-2018)](https://www.kaggle.com/datasets/decide-soluciones/air-quality-madrid) en Kaggle  
+**Autor:** decide-soluciones  
+**Fuente original:** Ayuntamiento de Madrid (Open Data)  
+**Licencia:** Open Data (uso libre con atribución)
 
----
+### Características del Dataset
+
+| Característica | Descripción |
+|----------------|-------------|
+| **Período** | 2001 - 2018 (18 años) |
+| **Frecuencia** | Mediciones horarias |
+| **Contaminantes** | NO₂ (µg/m³), CO (mg/m³) |
+| **Estructura** | Archivos CSV anuales (madrid_2001.csv a madrid_2018.csv) |
+| **Estaciones** | Múltiples estaciones de monitoreo en Madrid |
 
 ## 🔧 Instalación y Uso
 
@@ -48,45 +57,6 @@ madrid-air-pollution-time-series-forecasting/
 ```bash
 git clone https://github.com/SebastianDeghi/madrid-air-pollution-time-series-forecasting.git
 cd madrid-air-pollution-time-series-forecasting
-
-***
-
-## 🚀 Contaminantes Analizados
-
-| Contaminante | Fuente Principal | Unidad | Umbral "Bad" (malo) |
-| :--- | :--- | :--- | :--- |
-| **PM10** | Polvo, construcción, tráfico | µg/m³ | 150 |
-| **PM2.5** | Combustión, industria | µg/m³ | 75 |
-| **SO2** | Industria, calefacción | ppm | 0.15 |
-| **NO2** | Tráfico vehicular | ppm | 0.20 |
-| **O3** | Formación fotoquímica | ppm | 0.15 |
-| **CO** | Combustión incompleta | ppm | 15 |
-
-**Conclusión Clave:** El NO₂ muestra un patrón diario claro asociado al tráfico (picos en horas pico 8-9 AM y 6-7 PM). Las estaciones cercanas a autopistas presentan valores ~20-30% más altos. O₃ presenta anticorrelación con NO₂ (formación fotoquímica en horas de mayor radiación solar). PM10 y PM2.5 muestran episodios agudos asociados a tormentas de polvo asiático y estancamiento atmosférico.
-
-***
-
-## 🗺️ Visualizaciones Implementadas
-
-- **Mapa satelital** con las 25 estaciones de monitoreo geolocalizadas
-- **Gráficos de barras** de umbrales de calidad del aire (Good, Normal, Bad, Very Bad)
-- **Series temporales** por estación y contaminante (antes y después de limpieza)
-- **Patrones horarios de NO₂** con marcado de horas pico de tráfico
-- **Análisis espectral** (periodograma) para detectar ciclos diarios en NO₂
-- **Comparación** de estaciones cerca vs lejos de autopistas
-
-***
-
-## 🔧 Instalación y Uso
-
-Sigue estos pasos para clonar el repositorio, configurar el entorno y ejecutar el análisis en tu máquina local.
-
-### 1. Clonar el repositorio
-
-Abre tu terminal y ejecuta:
-```bash
-git clone https://github.com/SebastianDeghi/seoul-air-pollution-time-series-analysis.git
-cd seoul-air-pollution-time-series-analysis
 ```
 
 ### 2. Crear y activar un entorno virtual (recomendado)
@@ -114,70 +84,142 @@ pip install -r requirements.txt
 - `pandas`
 - `matplotlib`
 - `seaborn`
-- `geopandas`
-- `contextily`
 - `scipy`
 - `statsmodels`
+- `pmdarima`
+- `scikit-learn`
+- `joblib`
 - `kagglehub`
 - `jupyter`
 - `tqdm`
 - `session-info`
 
-## 📈 Hallazgos Principales
+### 4. Ejecutar el notebook
 
-| Contaminante | Hallazgo Clave |
-|--------------|----------------|
-| **PM10 y PM2.5** | Picos agudos (>150 µg/m³) por eventos de polvo asiático; las estaciones urbanas muestran promedios más altos |
-| **NO2** | Patrón diario de tráfico claro (picos a las 8-9 AM y 6-7 PM); estaciones cerca de autopistas muestran valores ~20-30% más altos |
-| **O3** | Anticorrelación con NO2 (formación fotoquímica); máximo durante el mediodía en verano |
-| **SO2 y CO** | Generalmente bajos debido a políticas ambientales exitosas; pequeños picos en invierno por calefacción |
+Finalmente, lanza Jupyter Notebook para abrir el archivo principal:
+```bash
+jupyter notebook IMDB_Sentiment_Analysis.ipynb
+```
 
-### Problemas de Calidad de Datos Detectados y Corregidos
+### 5. (Opcional) Descargar el dataset
 
-- Picos idénticos extremadamente altos en PM10/PM2.5 (saturación de sensores >950 µg/m³) → reemplazados por NaN
-- Valores negativos en SO2 (errores instrumentales) → reemplazados por NaN
+El notebook descargará automáticamente el dataset desde Kaggle usando `kagglehub`. Si es la primera vez, asegúrate de tener configuradas tus credenciales de Kaggle.
 
----
+***
+
+## 📈 Contenido del Análisis
+
+### 1. Análisis Exploratorio de Datos (EDA)
+- Carga y concatenación de archivos CSV anuales
+- Agregación diaria (promedio entre estaciones)
+- Visualización de series temporales (diarias, mensuales, anuales)
+
+### 2. Análisis de Estacionariedad
+- **Test ADF (Augmented Dickey-Fuller):** Hipótesis nula → serie no estacionaria
+- **Test KPSS (Kwiatkowski-Phillips-Schmidt-Shin):** Hipótesis nula → serie estacionaria
+- Interpretación combinada de ambos tests
+
+### 3. Descomposición Estacional
+- Modelo aditivo y multiplicativo
+- Separación en componentes: Tendencia + Estacionalidad + Residuo
+
+### 4. Transformaciones y Diferenciación
+- **Box-Cox:** Estabilización de varianza
+- **Diferenciación (orden 1):** Eliminación de tendencia
+
+### 5. Modelos de Forecasting
+
+| Modelo | Descripción | Parámetros |
+|--------|-------------|------------|
+| **ARIMA** | Autoregressive Integrated Moving Average | p, d, q (seleccionados automáticamente con auto_arima) |
+| **SES** | Simple Exponential Smoothing | α (smoothing level) |
+| **Holt** | Doble suavizado exponencial (con tendencia) | α, β |
+| **Holt-Winters** | Triple suavizado exponencial (tendencia + estacionalidad) | α, β, γ, s |
+
+### 6. Métricas de Evaluación
+- **MSE (Mean Squared Error):** Penaliza errores grandes
+- **RMSE (Root Mean Squared Error):** Error en unidades originales
+- **MAE (Mean Absolute Error):** Robusto a outliers
+- **MAPE (Mean Absolute Percentage Error):** Error relativo porcentual
+
+***
+
+## 📊 Resultados Principales
+
+### Hallazgos Clave
+
+| Contaminante | Tendencia | Estacionalidad | Mejor Modelo |
+|--------------|-----------|----------------|--------------|
+| **NO₂** | Descendente (políticas de control de emisiones) | Fuerte (mayor en invierno) | Holt-Winters |
+| **CO** | Descendente pronunciado (mejora tecnológica) | Suave | Holt-Winters |
+
+### Resultados de Estacionariedad
+
+| Gas | ADF (p-value) | KPSS (p-value) | Conclusión |
+|-----|---------------|----------------|------------|
+| NO₂ | < 0.05 (estacionaria) | < 0.05 (no estacionaria) | Estacionaria en diferencia (tiene tendencia) |
+| CO  | < 0.05 (estacionaria) | < 0.05 (no estacionaria) | Estacionaria en diferencia (tiene tendencia) |
+
+### Resultados después de Box-Cox + Diferenciación
+
+| Gas | λ Box-Cox | ADF (p-value) | KPSS (p-value) | Estado |
+|-----|-----------|---------------|----------------|--------|
+| NO₂ | 0.489 | < 0.0001 | > 0.05 | Estacionaria |
+| CO  | -0.572 | < 0.0001 | > 0.05 | Estacionaria |
+
+***
 
 ## 🗺️ Visualizaciones Incluidas
 
-- Mapa satelital con las 25 estaciones de monitoreo
-- Gráficos de series temporales por estación y contaminante
-- Gráficos de barras de umbrales de calidad del aire (Bueno, Normal, Malo, Muy Malo)
-- Patrones horarios de NO2 con marcado de horas pico de tráfico
-- Análisis espectral (periodograma) para ciclos diarios de NO2
-- Comparación de estaciones cerca vs. lejos de autopistas
+- Series temporales diarias de NO₂ y CO
+- Promedios mensuales y anuales
+- Descomposición estacional (aditiva y multiplicativa)
+- Comparación antes/después de transformaciones
+- Pronóstico ARIMA con intervalos de confianza
+- Comparativa de modelos de suavizado exponencial
+- Gráfico de barras de métricas de error
 
----
+***
 
 ## 📚 Dependencias
 
-- `numpy`, `pandas`, `matplotlib`, `seaborn`
-- `geopandas`, `contextily`, `shapely` (para mapas)
-- `scipy`, `statsmodels` (para análisis espectral y series temporales)
-- `kagglehub` (para descarga del dataset)
-- `jupyter`, `session-info`
+| Categoría | Librerías |
+|-----------|-----------|
+| **Cálculo científico** | `numpy`, `pandas`, `scipy` |
+| **Visualización** | `matplotlib`, `seaborn` |
+| **Series temporales** | `statsmodels`, `pmdarima` |
+| **Machine Learning** | `scikit-learn`, `joblib` |
+| **Jupyter** | `jupyter`, `ipykernel`, `session-info` |
+| **Utilidades** | `tqdm`, `kagglehub` |
 
----
+***
 
 ## 📄 Licencia
 
 Este proyecto está bajo la **Licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
----
+***
 
 ## 🙏 Agradecimientos
 
-- **Bappekim** por publicar el dataset en Kaggle
-- **Gobierno Metropolitano de Seúl** por proporcionar los datos abiertos
-- **Seoul Open Data Plaza** y **Air Quality Analysis Center**
+- **decide-soluciones** por publicar el dataset en Kaggle
+- **Ayuntamiento de Madrid** por proporcionar los datos abiertos
+- Comunidad open source por `statsmodels`, `pmdarima`, `scipy` y demás librerías
 
----
+***
+
+## 📚 Referencias
+
+- Box, G. E. P., Jenkins, G. M., Reinsel, G. C., & Ljung, G. M. (2015). *Time Series Analysis: Forecasting and Control*. John Wiley & Sons.
+- Hyndman, R. J., & Athanasopoulos, G. (2018). *Forecasting: Principles and Practice*. OTexts.
+- [Statsmodels Documentation](https://www.statsmodels.org/)
+- [pmdarima Documentation](https://alkaline-ml.com/pmdarima/)
+
+***
 
 ## 👤 Autor
 
 **Sebastián Deghi**
-
 - GitHub: [@SebastianDeghi](https://github.com/SebastianDeghi)
 - LinkedIn: [@sebastian-deghi](https://www.linkedin.com/in/sebastian-deghi/)
 - Google Scholar: [@Sebastian E. Deghi](https://scholar.google.com/citations?user=3Nq5hTIAAAAJ&hl=en)
