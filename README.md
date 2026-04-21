@@ -4,9 +4,9 @@ Análisis de series temporales de contaminantes atmosféricos en Seúl
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange)](https://jupyter.org/)
 [![Time Series](https://img.shields.io/badge/time--series-analysis-blue)](https://en.wikipedia.org/wiki/Time_series)
 [![ARIMA](https://img.shields.io/badge/ARIMA-forecasting-red)](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+![Visitas](https://komarev.com/ghpvc/?username=SebastianDeghi&repo=seoul-air-pollution-time-series-analysis&color=blue&style=flat)
 
 ### 👥 Colaboradores: **David Abba, Eduardo Andreozzi, Pablo Astoreca y Eduardo Castro Luna.**
 
@@ -98,7 +98,7 @@ pip install -r requirements.txt
 
 Finalmente, lanza Jupyter Notebook para abrir el archivo principal:
 ```bash
-jupyter notebook IMDB_Sentiment_Analysis.ipynb
+jupyter notebook Madrid_Air_Pollution_Forecasting.ipynb 
 ```
 
 ### 5. (Opcional) Descargar el dataset
